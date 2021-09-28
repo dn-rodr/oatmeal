@@ -45,7 +45,7 @@ print("Enter the name of the profile you wish to interact with.\nFor qutebrowser
 PROFILE = input("Profile Name: ")
 
 USER = os.getlogin()
-QUTE_PATH = '/home/{USER}/.local/share/qutebrowser'
+QUTE_PATH = f'/home/{USER}/.local/share/qutebrowser'
 
 #DB_PATH = f'{QUTE_PATH}/{PROFILE}/Cookies'
 #WL_PATH = f'{QUTE_PATH}/oatmeal/whitelist.json'
