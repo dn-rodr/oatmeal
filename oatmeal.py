@@ -41,9 +41,28 @@ from rich.theme import Theme
 
 __version__ = '0.1'
 
-DB_PATH = './Cookies'
-WL_PATH = './whitelist.json'
-BL_PATH = './blacklist.json'
+print("Enter the name of the profile you wish to interact with.\nFor qutebrowser\'s global profile, enter \'global\'\n")
+PROFILE = input("Profile Name: ")
+
+USER = os.getlogin()
+QUTE_PATH = '/home/{USER}/.local/share/qutebrowser'
+
+#DB_PATH = f'{QUTE_PATH}/{PROFILE}/Cookies'
+#WL_PATH = f'{QUTE_PATH}/oatmeal/whitelist.json'
+#BL_PATH = f'{QUTE_PATH}/oatmeal/blacklist.json'
+
+
+# This is written to read each profile's own separate blacklist and whitelist of cookies. It assumes they are named 'whitelist.json' and 'blacklist.json'.
+# This also assumes oatmeal is located in ~/.local/share/qutebrowser/oatmeal/
+
+if PROFILE == 'global':
+    DB_PATH = f'{QUTE_PATH}/webengine/Cookies'
+    WL_PATH = f'{QUTE_PATH}/oatmeal/whitelist.json'
+    BL_PATH = f'{QUTE_PATH}/oatmeal/blacklist.json'
+else:
+    DB_PATH = f'{QUTE_PATH}/{PROFILE}/webengine/Cookies'
+    WL_PATH = f'{QUTE_PATH}/{PROFILE}/whitelist.json'
+    BL_PATH = f'{QUTE_PATH}/{PROFILE}/blacklist.json'
 
 interactive = os.isatty(sys.stdin.fileno())
 
